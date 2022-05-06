@@ -6,11 +6,9 @@ import co.edu.umanizales.students_room_java.service.ListSeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
-@RequestMapping(path="listse")
-public class ListSeController {
+@RequestMapping(path="listsec")
+public class ListSeCircleController {
     @Autowired
     private ListSeService listSeService;
 
@@ -46,6 +44,6 @@ public class ListSeController {
     public String invert(){
         return listSeService.invert();
     }
-
 }
+
 

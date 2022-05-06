@@ -1,17 +1,17 @@
 package co.edu.umanizales.students_room_java.service;
 
-import co.edu.umanizales.students_room_java.model.ListSE;
-import co.edu.umanizales.students_room_java.model.Node;
+import co.edu.umanizales.students_room_java.model.ListDE;
+import co.edu.umanizales.students_room_java.model.NodeDE;
 import co.edu.umanizales.students_room_java.model.Pet;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @NoArgsConstructor
-public class ListSeService {
-    private ListSE list = new ListSE();
+public class ListDeService {
+    private ListDE list = new ListDE();
 
-    public Node getAllLinked(){
+    public NodeDE getAllLinked(){
         return this.list.getHead();
     }
 
@@ -53,6 +53,4 @@ public class ListSeService {
         return "Invertido con éxito";
 
     }
-
-
 }

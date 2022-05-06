@@ -6,46 +6,41 @@ import co.edu.umanizales.students_room_java.service.ListSeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
-@RequestMapping(path="listse")
-public class ListSeController {
+@RequestMapping(path="listde")
+public class ListDeController {
     @Autowired
-    private ListSeService listSeService;
+    private ListSeService listDeService;
 
     @GetMapping
     public Node getAllLinked()
     {
-        return listSeService.getAllLinked();
+        return listDeService.getAllLinked();
     }
 
     @PostMapping
     public String createPet(@RequestBody Pet pet)
     {
-        return listSeService.add(pet);
+        return listDeService.add(pet);
     }
-
     @PostMapping(path="/tostart")
     public String createPetToStart(@RequestBody Pet pet){
-        return listSeService.addToStart(pet);
+        return listDeService.addToStart(pet);
     }
 
     @PostMapping(path="/toposition/{position}")
     public String createPetToPosition(@PathVariable int position,
                                       @RequestBody Pet pet){
-        return listSeService.addToPosition(position,pet);
+        return listDeService.addToPosition(position,pet);
     }
 
     @GetMapping(path = "/deletebyposition/{position}")
     public String deleteByPosition(@PathVariable int position)
     {
-        return listSeService.deleteToPosition(position);
+        return listDeService.deleteToPosition(position);
     }
     @GetMapping(path="/toinvert")
     public String invert(){
-        return listSeService.invert();
+        return listDeService.invert();
     }
-
 }
-

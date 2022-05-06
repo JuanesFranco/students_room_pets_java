@@ -2,13 +2,14 @@ package co.edu.umanizales.students_room_java.service;
 
 import co.edu.umanizales.students_room_java.model.ListSE;
 import co.edu.umanizales.students_room_java.model.Node;
+import co.edu.umanizales.students_room_java.model.NodeDE;
 import co.edu.umanizales.students_room_java.model.Pet;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @NoArgsConstructor
-public class ListSeService {
+public class ListSECircleService {
     private ListSE list = new ListSE();
 
     public Node getAllLinked(){
@@ -25,34 +26,15 @@ public class ListSeService {
         return "Adicionado con éxito";
     }
 
-    public String addToPosition(int position, Pet pet)
+    public String invert()
     {
         try {
-            this.list.addToPosition(position, pet);
-            return "Adicionado con éxito";
+            this.list.invert();
+            return "Invertido con éxito.";
         }
         catch (Exception e)
         {
             return e.getMessage();
         }
     }
-
-    public String deleteToPosition(int position)
-    {
-        try {
-            this.list.deleteToPosition(position);
-            return "Eliminado con éxito";
-        }
-        catch (Exception e)
-        {
-            return e.getMessage();
-        }
-    }
-    public String invert(){
-        this.list.invert();
-        return "Invertido con éxito";
-
-    }
-
-
 }

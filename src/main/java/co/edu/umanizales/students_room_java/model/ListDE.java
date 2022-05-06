@@ -1,42 +1,41 @@
 package co.edu.umanizales.students_room_java.model;
 
 import lombok.Data;
-
 import java.util.ArrayList;
 
 @Data
-public class ListSE {
-    private Node head;
+public class ListDE {
+    private NodeDE head;
     private int count;
 
 
-    public void add(Pet pet) {
-        if (this.head == null) {
-            this.head = new Node(pet);
+    public void addToStart(Pet pet) {
+        if (head == null) {
+            head = new NodeDE(pet);
+
         } else {
-            Node temp = this.head;
-            while (temp.getNext() != null)
-            {
-                temp = temp.getNext();
-            }
-            //parado en el ultimo
-            temp.setNext(new Node(pet));
+            NodeDE newNodeDE = new NodeDE(pet);
+            newNodeDE.setNext(head);
+            head.setPrevious(newNodeDE);
+            head = newNodeDE;
         }
         count++;
     }
 
-    public void addToStart(Pet pet) {
-     if(head==null)
-     {
-         head=new Node(pet);
-     }
-     else
-     {
-         Node newNode=new Node(pet);
-         newNode.setNext(head);
-         head=newNode;
-     }
-     count++;
+    public void add(Pet pet) {
+        if (this.head == null) {
+            this.head = new NodeDE(pet);
+        } else {
+            NodeDE temp = this.head;
+            while (temp.getNext() != null) {
+                temp = temp.getNext();
+            }
+            //parado en el ultimo
+            temp.setNext(new NodeDE(pet));
+            temp.getNext().setPrevious(temp);
+
+        }
+        count++;
     }
     public void addToPosition(int position, Pet pet) throws Exception
     {
@@ -47,15 +46,16 @@ public class ListSE {
             }
             else
             {
-                Node temp = head;
+                NodeDE temp = head;
                 int count =1;
                 while(temp != null)
                 {
                     if(count==position -1)
                     {
-                        Node newNode = new Node(pet);
-                        newNode.setNext(temp.getNext());
-                        temp.setNext(newNode);
+                        NodeDE newNodeDE = new NodeDE(pet);
+                        newNodeDE.setNext(temp.getNext());
+                        temp.setNext(newNodeDE);
+                        temp.getNext().setPrevious(temp);
                         this.count++;
                         break;
                     }
@@ -80,13 +80,14 @@ public class ListSE {
             }
             else
             {
-                Node temp = head;
+                NodeDE temp = head;
                 int count =1;
                 while(temp != null)
                 {
                     if(count == position -1)
                     {
                         temp.setNext(temp.getNext().getNext());
+                        temp.getNext().setPrevious(temp);
                         this.count--;
                         break;
                     }
@@ -100,20 +101,21 @@ public class ListSE {
             throw new Exception("La posición no es válida");
         }
     }
-
     public void invert() {
-         if (this.head!=null )
-         {
+        if (this.head!=null )
+        {
 
-             ListSE listCp = new ListSE();
-             Node temp=this.head;
-             while (temp!= null)
-             {
-                 listCp.addToStart(temp.getData());
-                 temp=temp.getNext();
-             }
-              this.head=listCp.head;
-         }
+            ListDE listCp = new ListDE();
+            NodeDE temp=this.head;
+            while (temp!= null)
+            {
+                listCp.addToStart(temp.getData());
+                temp=temp.getNext();
+                temp.setNext(temp.getNext().getNext());
+                temp.getNext().setPrevious(temp);
+
+            }
+            this.head=listCp.head;
+        }
     }
 }
-
